@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
+import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps {
-  label: string;
+  label: React.ReactNode;
   width: number;
-  onClick: () => void;
+  onClick?: () => void;
   bgcolor?: string;
   color?: string;
   disabled?: boolean;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }
 
 export const DefaultButton = ({
@@ -16,10 +18,12 @@ export const DefaultButton = ({
   bgcolor = "primary.main",
   color = "white",
   disabled = false,
+  type = "button",
 }: ButtonProps) => {
   return (
     <Button
       variant="text"
+      type={type}
       onClick={onClick}
       disabled={disabled}
       sx={{
@@ -33,6 +37,7 @@ export const DefaultButton = ({
         fontWeight: 600,
         "&.Mui-disabled": {
           color: "#919eabcc",
+          bgcolor: "white",
         },
       }}
     >

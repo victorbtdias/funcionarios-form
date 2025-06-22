@@ -4,17 +4,29 @@ interface InputProps {
   label: string;
   select?: boolean;
   options?: { value: string; label: string }[];
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  type?: string;
 }
 
 export const DefaultInput = ({
   label,
   select = false,
   options,
+  value,
+  onChange,
+  required = true,
+  type = "text",
 }: InputProps) => {
   return (
     <TextField
       select={select}
       label={label}
+      value={value}
+      onChange={onChange}
+      type={type}
+      required={required}
       variant="outlined"
       slotProps={{
         input: {
@@ -51,6 +63,9 @@ export const DefaultInput = ({
               color: "#263238",
               fontWeight: 400,
               fontFamily: "Inter, sans-serif",
+            },
+            "& .MuiFormLabel-asterisk": {
+              display: "none",
             },
           },
         },

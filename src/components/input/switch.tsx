@@ -2,9 +2,11 @@ import { FormControlLabel, styled, Switch, SwitchProps } from "@mui/material";
 
 interface InputProps {
   label: string;
+  checked: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SwitchInput = ({ label }: InputProps) => {
+export const SwitchInput = ({ label, checked, onChange }: InputProps) => {
   const DefaultSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" {...props} />
   ))(() => ({
@@ -37,7 +39,7 @@ export const SwitchInput = ({ label }: InputProps) => {
 
   return (
     <FormControlLabel
-      control={<DefaultSwitch defaultChecked />}
+      control={<DefaultSwitch checked={checked} onChange={onChange} />}
       label={label}
       sx={{ height: 38 }}
       slotProps={{
