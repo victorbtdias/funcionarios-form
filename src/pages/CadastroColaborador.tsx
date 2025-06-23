@@ -1,19 +1,14 @@
-import {
-  Box,
-  CircularProgress,
-  LinearProgress,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Link, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
-import { DefaultButton } from "../components/button/Button";
-import { DefaultInput } from "../components/input/Input";
-import { SwitchInput } from "../components/input/switch";
-import { DefaultStepper } from "../components/stepper/stepper";
-import { DefaultBreadcrumbs } from "../components/breadcrumbs/breadcrumbs";
+import { DefaultButton } from "../components/common/button/Button";
+import { DefaultInput } from "../components/common/input/Input";
+import { DefaultSwitch } from "../components/common/input/Switch";
+import { DefaultStepper } from "../components/stepper/Stepper";
+import { DefaultBreadcrumbs } from "../components/breadcrumbs/Breadcrumbs";
 import { useNavigate } from "react-router-dom";
 import { colaboradorService } from "../services/colaboradorService";
-import { DefaultSnackbar } from "../components/snackbar/Snackbar";
+import { DefaultSnackbar } from "../components/common/snackbar/Snackbar";
+import { DefaultLinearProgress } from "../components/progress/Linear";
 
 const breadcrumbs = [
   <Link
@@ -29,8 +24,6 @@ const breadcrumbs = [
   </Typography>,
 ];
 
-const steps = [{ label: "Infos Básicas" }, { label: "Infos Profissionais" }];
-
 const departamentos = [
   { value: "Design", label: "Design" },
   { value: "TI", label: "TI" },
@@ -41,7 +34,7 @@ const departamentos = [
 export default function CadastroColaborador() {
   const navigate = useNavigate();
 
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(true);
@@ -51,13 +44,13 @@ export default function CadastroColaborador() {
   const [isLoading, setIsLoading] = useState(false);
 
   const validateStep = () => {
-    if (activeStep === 1) {
+    if (activeStep === 0) {
       if (!nome.trim() || !email.trim()) {
         setError("Todos os campos são obrigatórios");
         return false;
       }
     }
-    if (activeStep === 2) {
+    if (activeStep === 1) {
       if (!departamento) {
         setError("Selecione um departamento");
         return false;
@@ -71,8 +64,8 @@ export default function CadastroColaborador() {
 
     if (!validateStep()) return;
 
-    if (activeStep === 1) {
-      setActiveStep(2);
+    if (activeStep === 0) {
+      setActiveStep(1);
       setSuccess("Primeira etapa concluída com sucesso");
       return;
     } else {
@@ -101,21 +94,15 @@ export default function CadastroColaborador() {
 
   return (
     <form onSubmit={handleNext}>
-      <Box sx={{ mt: "12px", pl: "2px", pr: "94px" }}>
+      <Box sx={{ mt: "12px", pl: "40px", pr: "94px" }}>
         <Box sx={{ height: 22 }}>
           <DefaultBreadcrumbs breadcrumbs={breadcrumbs} />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mt: "18px" }}>
-          <LinearProgress
-            variant="determinate"
-            value={activeStep === 1 ? 0 : 50}
-            sx={{ height: 4, borderRadius: 1, width: "100%", mr: 1 }}
+          <DefaultLinearProgress
+            progress={`${activeStep === 0 ? 0 : 50}%`}
+            value={activeStep === 0 ? 0 : 50}
           />
-          <Typography
-            sx={{ fontSize: 12, fontWeight: 300, color: "text.secondary" }}
-          >
-            {`${activeStep === 1 ? 0 : 50}%`}
-          </Typography>
         </Box>
         <Box
           sx={{
@@ -130,8 +117,11 @@ export default function CadastroColaborador() {
             <Box>
               <DefaultStepper
                 activeStep={activeStep}
-                steps={steps}
-                height={activeStep === 1 ? 168 : 88}
+                steps={[
+                  { label: "Infos Básicas" },
+                  { label: "Infos Profissionais" },
+                ]}
+                height={activeStep === 0 ? 168 : 88}
               />
             </Box>
             <Box
@@ -142,7 +132,7 @@ export default function CadastroColaborador() {
                 width: "100%",
               }}
             >
-              {activeStep === 1 && (
+              {activeStep === 0 && (
                 <>
                   <Typography
                     variant="h4"
@@ -167,7 +157,7 @@ export default function CadastroColaborador() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <Box>
-                    <SwitchInput
+                    <DefaultSwitch
                       label="Ativar ao criar"
                       checked={status}
                       onChange={(e) => setStatus(e.target.checked)}
@@ -175,7 +165,7 @@ export default function CadastroColaborador() {
                   </Box>
                 </>
               )}
-              {activeStep === 2 && (
+              {activeStep === 1 && (
                 <>
                   <Typography
                     variant="h4"
@@ -206,11 +196,11 @@ export default function CadastroColaborador() {
               onClick={handleBack}
               bgcolor="white"
               color="text.primary"
-              disabled={activeStep === 1 ? true : false}
+              disabled={activeStep === 0 ? true : false}
             />
             <DefaultButton
               label={
-                activeStep === 1 ? (
+                activeStep === 0 ? (
                   "Próximo"
                 ) : isLoading ? (
                   <CircularProgress size={30} color="inherit" />

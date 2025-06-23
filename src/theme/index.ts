@@ -13,6 +13,9 @@ export const theme = createTheme({
       secondary: "#637381",
       disabled: "#919eab",
     },
+    grey: {
+      900: "#263238",
+    },
   },
   typography: {
     fontFamily: `'Public Sans', sans-serif`,

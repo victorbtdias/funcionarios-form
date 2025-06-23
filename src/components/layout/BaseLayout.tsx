@@ -20,7 +20,6 @@ export default function BaseLayout() {
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
-          px: "42px",
         }}
       >
         <Header />

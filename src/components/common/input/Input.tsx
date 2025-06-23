@@ -32,16 +32,16 @@ export const DefaultInput = ({
         input: {
           sx: {
             fontWeight: 300,
-            color: "#263238",
+            color: "grey.900",
             fontFamily: "Inter, sans-serif",
             letterSpacing: "0.16px",
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#263238",
+              borderColor: "grey.900",
               opacity: 0.16,
               borderRadius: "8px",
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#263238",
+              borderColor: "grey.900",
               opacity: 1,
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -60,7 +60,7 @@ export const DefaultInput = ({
               fontFamily: "Inter, sans-serif",
             },
             "&.MuiInputLabel-shrink:not(.Mui-focused)": {
-              color: "#263238",
+              color: "grey.900",
               fontWeight: 400,
               fontFamily: "Inter, sans-serif",
             },

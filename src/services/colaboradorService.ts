@@ -1,6 +1,6 @@
-import { Colaborador } from "../components/types/colaborador";
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import { Colaborador } from "../types/colaborador";
 
 export const colaboradorService = {
   create: async (dados: Colaborador) => {

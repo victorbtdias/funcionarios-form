@@ -21,7 +21,7 @@ export const DefaultStepper = ({ activeStep, steps, height }: StepperProps) => {
       <Box
         sx={{
           backgroundColor: completed || active ? "primary.main" : "#dfe3e8",
-          color: completed || active ? "white" : "#637381",
+          color: completed || active ? "white" : "text.secondary",
           width: 24,
           height: 24,
           borderRadius: 50,

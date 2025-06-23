@@ -13,6 +13,15 @@ export const sortByField = <T>(
         : valueB.localeCompare(valueA);
     }
 
+    if (typeof valueA === "boolean" && typeof valueB === "boolean") {
+      if (valueA === valueB) return 0;
+      if (direction === "asc") {
+        return valueA ? 1 : -1;
+      } else {
+        return valueA ? -1 : 1;
+      }
+    }
+
     return 0;
   });
 };

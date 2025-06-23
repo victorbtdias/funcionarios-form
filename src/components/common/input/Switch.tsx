@@ -6,7 +6,7 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SwitchInput = ({ label, checked, onChange }: InputProps) => {
+export const DefaultSwitch = ({ label, checked, onChange }: InputProps) => {
   const DefaultSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" {...props} />
   ))(() => ({
@@ -22,7 +22,7 @@ export const SwitchInput = ({ label, checked, onChange }: InputProps) => {
         transform: "translateX(13px)",
         color: "white",
         "& + .MuiSwitch-track": {
-          backgroundColor: "#22c55e",
+          backgroundColor: "primary.main",
           opacity: 1,
         },
       },

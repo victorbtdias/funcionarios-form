@@ -8,6 +8,7 @@ export const Header = () => {
         justifyContent: "flex-end",
         alignItems: "center",
         height: 80,
+        px: "42px",
       }}
     >
       <Avatar
