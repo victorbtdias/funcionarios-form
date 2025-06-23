@@ -25,11 +25,11 @@ A aplicação está hospedada em:
 
 ### 1. Clone o repositório
 
-# HTTPS
+##### HTTPS
 
 git clone https://github.com/victorbtdias/funcionarios-form.git
 
-# ou via SSH
+##### ou via SSH
 
 git clone git@github.com:victorbtdias/funcionarios-form.git
 
@@ -39,19 +39,16 @@ cd funcionarios-form
 
 npm install
 
-### 3. Configure as variáveis de ambiente
+### 3. Configure o Firebase
 
-Crie um arquivo .env na raiz do projeto com suas credenciais do Firebase.
+Para usar o Firebase como base de dados, é necessário ter uma coleção no banco de dados chamada 'colaboradores'.
 
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_STORAGE_BUCKET=
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-REACT_APP_FIREBASE_APP_ID=
+### 4. Configure as variáveis de ambiente
 
-### 4. Execute a aplicação
+Crie um arquivo .env.local na raiz do projeto com suas credenciais do Firebase. As variáveis necessárias estão presentes no arquivo .env.example.
 
-npm run start
+### 5. Execute a aplicação
+
+npm start
 
 Acesse em http://localhost:3000
